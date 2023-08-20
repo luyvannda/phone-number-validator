@@ -1,7 +1,6 @@
 function telephoneCheck(str) {
 
   let invalid = /[a-zA-Z!@#$%&*_?]/g;
-  console.log(str)
   if (invalid.test(str)) {
     return false
   }
@@ -37,14 +36,21 @@ function telephoneCheck(str) {
     return false;
   }
 
+  let validFormat = /^(1)?\s?\(?(\d{3})\)?[-\s]?(\d{3})[-\s]?(\d{4})/
+
   let newStr = str.replace(/[^\d+]/g, "");
   console.log(typeof newStr, newStr)
 
   let num = parseInt(newStr, 10);
   console.log(typeof num, num);
   // Check if the number is a valid 10-digit number or a valid 11-digit number starting with 1
-  return (num > 1000000000 && num < 9999999999 || num > 10000000000 && num < 19999999999);
-}
+  if (num > 1000000000 && num < 9999999999
+    || num > 10000000000 && num < 19999999999) {
+    return validFormat.test(str);
+  } else {
+    return false
+  }
+};
 
-let result = telephoneCheck("(6054756961)");
+let result = telephoneCheck("27576227382");
 console.log(result);
