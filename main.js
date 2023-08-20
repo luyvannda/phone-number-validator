@@ -1,6 +1,6 @@
 function telephoneCheck(str) {
 
-  let invalid = /[?]/g;
+  let invalid = /[a-zA-Z!@#$%&*_?]/g;
   console.log(str)
   if (invalid.test(str)) {
     return false
