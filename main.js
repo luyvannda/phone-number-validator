@@ -1,5 +1,28 @@
 function telephoneCheck(str) {
 
+  let invalid = /[?]/g;
+  console.log(str)
+  if (invalid.test(str)) {
+    return false
+  }
+
+  let openParenthesis = 0;
+  let closeParenthesis = 0;
+
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === "(") {
+      openParenthesis++;
+    } else if (str[i] === ")") {
+      closeParenthesis++;
+      if (closeParenthesis > openParenthesis) {
+        return false;
+      }
+    }
+  }
+  if (openParenthesis !== closeParenthesis) {
+    return false;
+  }
+
   let newStr = str.replace(/[^\d+]/g, "");
   console.log(typeof newStr, newStr)
 
